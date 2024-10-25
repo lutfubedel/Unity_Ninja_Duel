@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bullet
+  - Player1_HealthBar
+  - HitBlock
+  - Button_JoinRoom
+  - Button_CreateRoom
+  - Button_SaveName
+  - ServerInfo
+  - Trap_3
+  - Trap_4
+  - WallLeft
+  - WallRight
+  - SpawnPoint_1
+  - SpawnPoint_2
+  - Player1
+  - Player2
+  - FPS
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
