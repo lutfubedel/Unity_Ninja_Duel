@@ -48,11 +48,45 @@ public class PlayerController : MonoBehaviour
     {
         if (pw.IsMine)
         {
-            Move();
-            Jump();
-            Attack();
+            MakeDizzy();
+
+            if (!anim.GetBool("Dizzy"))
+            {
+                Move();
+                Jump();
+                Attack();
+            }
         }
 
+    }
+
+    private void MakeDizzy()
+    {
+        if (isHitbyTrap)
+        {
+            anim.SetBool("Dizzy", true);
+            Invoke(nameof(ChangeDizzy), 3f);
+        }
+    }
+
+    private void Fire()
+    {
+        if (pw.IsMine)
+        {
+            GameObject newFireBall = PhotonNetwork.Instantiate("FireBall", firePoint.transform.position, Quaternion.identity, 0, null);
+
+            newFireBall.tag = gameObject.CompareTag("Player1") ? "Player1Fire" : "Player2Fire";
+
+            if (transform.eulerAngles.y == 180)
+            {
+                newFireBall.GetComponent<FireBall>().moveInput = -1;
+                newFireBall.transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
+            else
+            {
+                newFireBall.GetComponent<FireBall>().moveInput = 1;
+            }
+        }
     }
 
     private void Attack()
@@ -92,8 +126,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("FireAttack", false);
         }
     }
-
-
     private void Move()
     {
         bool isMoving = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
@@ -115,7 +147,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Move", isMoving);
         anim.SetBool("Dash", isSliding);
     }
-
     private void Jump()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
@@ -143,6 +174,15 @@ public class PlayerController : MonoBehaviour
     {
         canFire = true;
     }
+
+    private void ChangeDizzy()
+    {
+        isHitbyTrap = false;
+        anim.SetBool("Dizzy", false);
+    }
+
+
+
     private IEnumerator AirAttackRoutine()
     {
         isAirAttacking = true;

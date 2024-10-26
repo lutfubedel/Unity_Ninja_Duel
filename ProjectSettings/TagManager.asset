@@ -20,6 +20,10 @@ TagManager:
   - Player1
   - Player2
   - FPS
+  - Player1Fire
+  - Player2Fire
+  - GameManager
+  - Player2_HealthBar
   layers:
   - Default
   - TransparentFX

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3520218325473296916}
   - component: {fileID: 3119189373575859934}
   - component: {fileID: 1392243337016455076}
-  - component: {fileID: -3230995288298026660}
   - component: {fileID: 7844094554366896255}
   - component: {fileID: 4210637591707128120}
   - component: {fileID: -4763592996227302302}
+  - component: {fileID: 316870810787078000}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -137,20 +137,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 0.66}
   m_EdgeRadius: 0
---- !u!114 &-3230995288298026660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8110924801679304933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab65eebd5af55a448053ff3bea8fde1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireBallSpeed: 15
-  moveInput: 0
 --- !u!114 &7844094554366896255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,5 +191,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: hit
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &316870810787078000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8110924801679304933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6e3ed2b087ded48895c016e1f51b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireBallSpeed: 30
+  moveInput: 0
+  damageSize: 10

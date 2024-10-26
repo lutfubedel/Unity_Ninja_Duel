@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 6932745121227745716}
   m_Layer: 0
   m_Name: HealthBar_Green
-  m_TagString: Player1_HealthBar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.946
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -451,7 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca88bbb57ffe5ea4db3bb632abb8c880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   healthBar: {fileID: 6932745121227745716}
   canHit: 0
   canTakeDamage: 0
@@ -572,8 +571,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3543144553201131875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0667, y: -0.816, z: 1.3333334}
-  m_LocalScale: {x: 0.8594161, y: 0.29706493, z: 1}
+  m_LocalPosition: {x: 0.9792, y: -0.816, z: 1.3333334}
+  m_LocalScale: {x: 1.0343933, y: 0.29706493, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3543144551602702059}
