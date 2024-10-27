@@ -11,8 +11,6 @@ TagManager:
   - Button_CreateRoom
   - Button_SaveName
   - ServerInfo
-  - Trap_3
-  - Trap_4
   - WallLeft
   - WallRight
   - SpawnPoint_1
