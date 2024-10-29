@@ -45,6 +45,10 @@ MonoBehaviour:
   - DestroyWithTime
   - PlayerDamage
   - UpdateHealthBar
+  - PrizeSpawner
+  - HealthPotionSpawner
+  - HealthPlus
+  - SpikeSpawner
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

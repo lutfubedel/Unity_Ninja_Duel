@@ -84,15 +84,39 @@ public class Player : MonoBehaviour
             enemy.GetComponent<Player>().canHit = true;
         }
 
-        if (collision.tag.StartsWith("Trap_") && canTakeDamage)
+        if (collision.CompareTag("Trap") && canTakeDamage)
         {
             GetComponent<PlayerController>().isHitbyTrap = true;
             Vector2 forceDirection = (collision.transform.position - transform.position).normalized;
 
             rb.AddForce(forceDirection * 500, ForceMode2D.Force);
-            HitPlayer();
+            TrapDamage();
             canTakeDamage = false;
         }
+
+        if (collision.CompareTag("HealthPotion"))
+        {
+            if (gameObject.CompareTag("Player1"))
+            {
+                manager.GetComponent<PhotonView>().RPC("HealthPlus", RpcTarget.All, 1);
+            }
+            else if (gameObject.CompareTag("Player2"))
+            {
+                manager.GetComponent<PhotonView>().RPC("HealthPlus", RpcTarget.All, 2);
+            }
+
+            PhotonView objPhotonView = collision.GetComponent<PhotonView>();
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (objPhotonView != null)
+                {
+                    PhotonNetwork.Destroy(objPhotonView.gameObject);
+                }
+            }
+        }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -116,6 +140,21 @@ public class Player : MonoBehaviour
             else
             {
                 manager.GetComponent<PhotonView>().RPC("PlayerDamage", RpcTarget.All, 1, 10f);
+            }
+        }
+    }
+
+    public void TrapDamage()
+    {
+        if (pw.IsMine && canTakeDamage)
+        {
+            if (gameObject.CompareTag("Player1"))
+            {
+                manager.GetComponent<PhotonView>().RPC("PlayerDamage", RpcTarget.All, 1, 10f);
+            }
+            else
+            {
+                manager.GetComponent<PhotonView>().RPC("PlayerDamage", RpcTarget.All, 2, 10f);
             }
         }
     }

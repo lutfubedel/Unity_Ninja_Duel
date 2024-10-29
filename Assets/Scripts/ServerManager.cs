@@ -73,6 +73,13 @@ public class ServerManager : MonoBehaviourPunCallbacks
 
         GameObject myPlayer = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity, 0, null);
         myPlayer.GetComponent<PhotonView>().Owner.NickName = PlayerPrefs.GetString("UserName");
+
+        if (PhotonNetwork.PlayerList.Length == 2)
+        {
+            GameObject.FindWithTag("GameManager").GetComponent<PhotonView>().RPC("HealthPotionSpawner", RpcTarget.All);
+            GameObject.FindWithTag("GameManager").GetComponent<PhotonView>().RPC("SpikeSpawner", RpcTarget.All);
+
+        }
     }
 
 
