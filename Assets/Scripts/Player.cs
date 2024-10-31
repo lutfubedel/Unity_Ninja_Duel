@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Image healthBar;
     public bool canHit;
     public bool canTakeDamage;
+    private bool hasCollectedCrystal = false;
     public GameObject enemy;
 
     Rigidbody2D rb;
@@ -117,27 +118,26 @@ public class Player : MonoBehaviour
 
         }
 
-        if(collision.CompareTag("Crystal"))
+        if (collision.CompareTag("Crystal") && !hasCollectedCrystal && pw.IsMine)
         {
-            if (gameObject.CompareTag("Player1"))
-            {
-                manager.GetComponent<PhotonView>().RPC("TakeCrystal", RpcTarget.All, 1);
-            }
-            else if (gameObject.CompareTag("Player2"))
-            {
-                manager.GetComponent<PhotonView>().RPC("TakeCrystal", RpcTarget.All, 2);
-            }
+            PhotonView crystalPhotonView = collision.GetComponent<PhotonView>();
 
-            PhotonView objPhotonView = collision.GetComponent<PhotonView>();
-
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient && crystalPhotonView != null)
             {
-                if (objPhotonView != null)
+                if (gameObject.CompareTag("Player1"))
                 {
-                    PhotonNetwork.Destroy(objPhotonView.gameObject);
+                    manager.GetComponent<PhotonView>().RPC("TakeCrystal", RpcTarget.All, 1);
                 }
+                else if (gameObject.CompareTag("Player2"))
+                {
+                    manager.GetComponent<PhotonView>().RPC("TakeCrystal", RpcTarget.All, 2);
+                }
+
+                PhotonNetwork.Destroy(crystalPhotonView.gameObject);
             }
 
+            hasCollectedCrystal = true;
+            Invoke(nameof(ResetCrystalCollectionFlag), 0.5f);
         }
 
 
@@ -184,7 +184,10 @@ public class Player : MonoBehaviour
     }
 
 
-
+    private void ResetCrystalCollectionFlag()
+    {
+        hasCollectedCrystal = false;
+    }
 
 
     private void ChangeCanTakeDamage()

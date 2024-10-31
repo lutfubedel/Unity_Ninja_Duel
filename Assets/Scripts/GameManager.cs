@@ -253,6 +253,9 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LeaveLobby();
+
         PhotonNetwork.LoadLevel(0);
     }
 
