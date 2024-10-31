@@ -49,6 +49,10 @@ MonoBehaviour:
   - HealthPotionSpawner
   - HealthPlus
   - SpikeSpawner
+  - TakeCrystal
+  - CrystalSpawner
+  - PlayerDead
+  - ShowEndGamePanel
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

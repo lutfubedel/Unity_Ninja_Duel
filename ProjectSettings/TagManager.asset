@@ -23,6 +23,11 @@ TagManager:
   - GameManager
   - Player2_HealthBar
   - Trap
+  - HealthPotion
+  - Crystal
+  - PlayersWaiting
+  - Panel_End
+  - Panel_End_PlayerName
   layers:
   - Default
   - TransparentFX

@@ -114,6 +114,30 @@ public class Player : MonoBehaviour
                     PhotonNetwork.Destroy(objPhotonView.gameObject);
                 }
             }
+
+        }
+
+        if(collision.CompareTag("Crystal"))
+        {
+            if (gameObject.CompareTag("Player1"))
+            {
+                manager.GetComponent<PhotonView>().RPC("TakeCrystal", RpcTarget.All, 1);
+            }
+            else if (gameObject.CompareTag("Player2"))
+            {
+                manager.GetComponent<PhotonView>().RPC("TakeCrystal", RpcTarget.All, 2);
+            }
+
+            PhotonView objPhotonView = collision.GetComponent<PhotonView>();
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (objPhotonView != null)
+                {
+                    PhotonNetwork.Destroy(objPhotonView.gameObject);
+                }
+            }
+
         }
 
 
@@ -159,10 +183,16 @@ public class Player : MonoBehaviour
         }
     }
 
+
+
+
+
     private void ChangeCanTakeDamage()
     {
         canTakeDamage = true;
     }
+
+
 
 
 

@@ -14,14 +14,15 @@ public class PlayerController : MonoBehaviour
     [Header("Ground Checker")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private float groundCheckRadius = 0.35f;
 
     [Header("Booleans")]
     [SerializeField] private bool isGrounded;
-    [SerializeField] private bool canFire;
+    [SerializeField] public bool canFire;
     [SerializeField] private bool isSliding;
     [SerializeField] private bool isAirAttacking;
     [SerializeField] public bool isHitbyTrap;
+    [SerializeField] public bool canMove;
 
     [Header("Fire")]
     [SerializeField] private GameObject fireBall;
@@ -42,11 +43,13 @@ public class PlayerController : MonoBehaviour
         isAirAttacking = false;
 
         jumpCount = extraJumps;
+
+        InvokeRepeating(nameof(IsGameStart), 1f, 0.5f);
     }
 
     void Update()
     {
-        if (pw.IsMine)
+        if (pw.IsMine && canMove)
         {
             MakeDizzy();
 
@@ -58,6 +61,25 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+    }
+
+    public void IsGameStart()
+    {
+        if (PhotonNetwork.PlayerList.Length == 2)
+        {
+            if (pw.IsMine)
+            {
+                CancelInvoke(nameof(IsGameStart));
+                canFire = true;
+                canMove = true;
+            }
+        }
+        else
+        {
+            StopAllCoroutines();
+            canFire = false;
+            canMove = false;
+        }
     }
 
     private void MakeDizzy()
@@ -118,7 +140,7 @@ public class PlayerController : MonoBehaviour
         if (fireAttack && canFire)
         {
             anim.SetBool("FireAttack", true);
-            Invoke(nameof(ChangeCanFire), 0.75f);
+            Invoke(nameof(ChangeCanFire), 0.5f);
             canFire = false;
         }
         else

@@ -7,7 +7,7 @@ public class FireBall : MonoBehaviour
     public float fireBallSpeed;
     public int moveInput;
 
-    [SerializeField] private float damageSize;
+    public float damageSize;
 
     PhotonView pw;
     GameManager manager;

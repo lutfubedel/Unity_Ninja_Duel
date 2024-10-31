@@ -71,18 +71,37 @@ public class ServerManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Odaya Girildi");
 
+        InvokeRepeating(nameof(CheckPlayerInfo), 0f, 1f);
+
         GameObject myPlayer = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity, 0, null);
         myPlayer.GetComponent<PhotonView>().Owner.NickName = PlayerPrefs.GetString("UserName");
 
         if (PhotonNetwork.PlayerList.Length == 2)
         {
+
             GameObject.FindWithTag("GameManager").GetComponent<PhotonView>().RPC("HealthPotionSpawner", RpcTarget.All);
             GameObject.FindWithTag("GameManager").GetComponent<PhotonView>().RPC("SpikeSpawner", RpcTarget.All);
-
+            GameObject.FindWithTag("GameManager").GetComponent<PhotonView>().RPC("CrystalSpawner", RpcTarget.All);
         }
     }
 
 
+    public void CheckPlayerInfo()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            if (PhotonNetwork.PlayerList.Length == 2)
+            {
+                GameObject.FindWithTag("PlayersWaiting").SetActive(false);
+                CancelInvoke(nameof(CheckPlayerInfo));
+            }
+            else
+            {
+                GameObject.FindWithTag("PlayersWaiting").SetActive(true);
+            }
+        }
+
+    }
 
 
 
