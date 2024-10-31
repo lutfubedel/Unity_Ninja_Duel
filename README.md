@@ -29,9 +29,9 @@ Hızlı tempolu aksiyon, zorlu kontroller ve tuzaklarla dolu dinamik bir harita 
 
 ## Oyun İçi Görseller
 
-![Oyun Görüntüsü](images/gameplay.png)
-![Oyun Görüntüsü](images/gameplay.png)
-![Oyun Görüntüsü](images/gameplay.png)
-![Oyun Görüntüsü](images/gameplay.png)
-![Oyun Görüntüsü](images/gameplay.png)
-![Oyun Görüntüsü](images/gameplay.png)
+![Oyun Görüntüsü](images/img1.png)
+![Oyun Görüntüsü](images/img2.png)
+![Oyun Görüntüsü](images/img3.png)
+![Oyun Görüntüsü](images/img4.png)
+![Oyun Görüntüsü](images/img5.png)
+![Oyun Görüntüsü](images/img6.png)
